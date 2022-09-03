@@ -1,4 +1,3 @@
-package P2;
 import java.time.*;
 
 public class Main{
@@ -31,7 +30,7 @@ public class Main{
 
         Period periodo = Period.between(data, data2);
 
-        System.out.printf("%s e %s",user1.nome, user1.tipo);
+        System.out.printf("%s e %s",user1.getNome(), user1.getTipo());
 
         Projeto projeto = new Projeto(1, "Projeto de manipulacao de variaveis", user3, inicio, fim, user7, atividade, bolsa, periodo);
         projeto.addProfissional(user4);

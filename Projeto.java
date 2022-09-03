@@ -1,4 +1,3 @@
-package P2;
 import java.util.LinkedList;
 import java.time.*;
 
@@ -15,6 +14,7 @@ public class Projeto{
     private Period periodoVigencia;                                                     //ok
     private Status status;                                                              //ok
 
+    //Construtor
     public Projeto(int id, String descricao, Usuario coordenador, LocalDateTime dHIni, LocalDateTime dHFim,
                    Usuario profissional, Atividade atividade, Bolsa bolsa, Period periodo){
         
@@ -30,20 +30,17 @@ public class Projeto{
         this.periodoVigencia = periodo ;
         this.status = status;
     }
-
+    
+//  {--------------Inserções--------------------
     public void addUsuario(Usuario usuario){
         this.usuarios.add(usuario);
-        if (usuario.tipo != Tipo.GRADUANDO && usuario.tipo != Tipo.MESTRANDO && usuario.tipo != Tipo.DOUTORANDO && usuario.tipo != Tipo.PROFESSOR){
+        if (usuario.getTipo() != Tipo.GRADUANDO && usuario.getTipo() != Tipo.MESTRANDO && usuario.getTipo() != Tipo.DOUTORANDO && usuario.getTipo() != Tipo.PROFESSOR){
             addProfissional(usuario);
         }
     }
 
     public void addProfissional(Usuario profissional){
         this.profissionais.add(profissional);
-    }
-    
-    public void removeProfissional(Usuario profissional) {
-    	this.profissionais.remove(profissional);
     }
 
     public void addAtividade(Atividade atividade){
@@ -53,4 +50,91 @@ public class Projeto{
     public void addBolsa(Bolsa bolsa){
         this.valoresBolsas.add(bolsa);
     }
+//  ---------------Inserções-------------------}
+
+//  {---------------Remoções--------------------
+    public void removeProfissional(Usuario profissional) {
+    	this.profissionais.remove(profissional);
+    }
+//  ----------------Remoções-------------------}
+
+//  {---------------Edições---------------------
+    public void editarUsuario(Usuario usuarioAtual, Usuario novoUsuario){
+        this.usuarios.remove(usuarioAtual);
+        this.usuarios.add(novoUsuario);
+    }
+
+    public void editarDescricao(String novaDescricao){
+        this.descricao.replace(this.descricao, novaDescricao);
+    }
+
+    public void editarDataInicio(LocalDateTime novaData){
+        LocalDateTime agora = LocalDateTime.now();
+
+        if(this.dHInicio.isAfter(agora)){
+            this.dHInicio = novaData;
+        }
+    }
+
+    public void editarDataFim(LocalDateTime novaData){
+        LocalDateTime agora = LocalDateTime.now();
+
+        if(novaData.isAfter(agora)){
+            this.dHFim = novaData;
+        }
+    }
+
+    public void editarCoordenador(Usuario novoCoordenador){
+        this.coordenador = novoCoordenador;
+    }
+
+    public void editarProfissional(Usuario profissionalAtual, Usuario novoProfisional){
+        this.profissionais.remove(profissionalAtual);
+        this.profissionais.add(novoProfisional);
+    }
+
+    public void editarAtividade(Atividade atvAtual, Atividade novaAtv){
+        this.atividades.remove(atvAtual);
+        this.atividades.add(novaAtv);
+    }
+
+    public void editarBolsa(Bolsa bolsaAtual, Bolsa novaBolsa){
+        this.valoresBolsas.remove(bolsaAtual);
+        this.valoresBolsas.add(novaBolsa);
+    }
+
+    public void editarStatus(Status novoStatus){
+        this.status = novoStatus;
+    }
+//  ----------------Edições--------------------}
+
+//  {---------------Getters---------------------
+    public int getId(){
+        return id;
+    }
+
+    public String getDescricao(){
+        return descricao;
+    }
+
+    public LocalDateTime getDataInicio(){
+        return dHInicio;
+    }
+
+    public LocalDateTime getDataFim(){
+        return dHFim;
+    }
+
+    public Usuario getCoordenador(){
+        return coordenador;
+    }
+
+    public Period getVigencia(){
+        return periodoVigencia;
+    }
+
+    public Status getStatus(){
+        return status;
+    }
+//  ----------------Getters--------------------}
 }

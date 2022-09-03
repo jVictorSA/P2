@@ -1,4 +1,3 @@
-package P2;
 public enum Status{
     EM_PROCESSO_DE_CRIACAO, INICIADO, EM_ANDAMENTO, CONCLUIDO;
 }

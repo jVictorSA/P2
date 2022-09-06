@@ -1,16 +1,20 @@
 import java.util.LinkedList;
 import java.time.*;
+import java.util.UUID;
 
 public class Atividade{
+    private UUID id;
     private String descricao;           //ok
     private LocalDateTime dhInicioAtv;  //ok
     private LocalDateTime dhFimAtv;     //ok
     private Usuario responsavel;        //ok
     private LinkedList<Usuario> profissionaisEnvolv = new LinkedList<Usuario>();    //ok
     private LinkedList<Tarefa> tarefas = new LinkedList<Tarefa>();                  //ok
+    private LinkedList<Usuario> requisitantes = new LinkedList<Usuario>();
 
     //Construtor
     public Atividade(String descricao, Usuario responsavel, LocalDateTime dHIni, LocalDateTime dHFim){
+        this.id = UUID.randomUUID();
         this.descricao = descricao;
         this.dhInicioAtv = dHIni;
         this.dhFimAtv = dHFim;
@@ -25,7 +29,11 @@ public class Atividade{
     public void addTarefa(Tarefa tarefa){
         this.tarefas.add(tarefa);
     }
-//  --------------Inserções--------------------}
+
+    public void addRequisitante(Usuario usuario){
+        this.requisitantes.add(usuario);
+    }
+    //  --------------Inserções--------------------}
 
 //  {--------------Remoções---------------------
     public void removeProfissional(Usuario usuario){
@@ -73,21 +81,15 @@ public class Atividade{
 
 //  {---------------Getters---------------------
 
-    public String getDescricao(){
-        return descricao;
-    }
+    public UUID getId(){ return id; }
 
-    public LocalDateTime getDataInicio(){
-        return dhInicioAtv;
-    }
+    public String getDescricao(){ return descricao; }
 
-    public LocalDateTime getDataFim(){
-        return dhFimAtv;
-    }
+    public LocalDateTime getDataInicio(){ return dhInicioAtv; }
 
-    public Usuario getResponsavel(){
-        return responsavel;
-    }
+    public LocalDateTime getDataFim(){ return dhFimAtv; }
+
+    public Usuario getResponsavel(){ return responsavel; }
 //  ----------------Getters--------------------}
 
 }

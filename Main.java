@@ -32,7 +32,7 @@ public class Main{
 
         System.out.printf("%s e %s",user1.getNome(), user1.getTipo());
 
-        Projeto projeto = new Projeto(1, "Projeto de manipulacao de variaveis", user3, inicio, fim, user7, atividade, bolsa, periodo);
+        Projeto projeto = new Projeto("Projeto de manipulacao de variaveis", user3, inicio, fim, user7, atividade, bolsa, periodo);
         projeto.addProfissional(user4);
         projeto.addUsuario(user1);
         projeto.addProfissional(user6);

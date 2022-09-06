@@ -1,6 +1,7 @@
 public class Usuario{
     private String nome;
     private Tipo tipo;
+    //private 
 
     //Construtor
     public Usuario(String nome, Tipo tipo){
@@ -27,4 +28,14 @@ public class Usuario{
         return tipo;
     }
 //  ----------------Getters--------------------}
+
+//  {-------------Requisições-------------------
+    public void candidatarProjeto(Projeto projeto){
+        projeto.addRequisitante(this);
+    }
+
+    public void candidatarAtividade(Atividade atividade){
+        atividade.addRequisitante(this);
+    }
+//  -------------Requisições------------------}    
 }

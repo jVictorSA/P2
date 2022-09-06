@@ -1,9 +1,10 @@
 import java.util.LinkedList;
 import java.time.*;
+import java.util.UUID;
 
 public class Projeto{
     private LinkedList<Usuario> usuarios = new LinkedList<Usuario>() ;                  //ok
-    private int id;                                                                     //ok
+    private UUID id;                                                                     //ok
     private String descricao;                                                           //ok
     private LocalDateTime dHInicio;                                                     //ok
     private LocalDateTime dHFim;                                                        //ok
@@ -11,15 +12,16 @@ public class Projeto{
     private LinkedList<Usuario> profissionais = new LinkedList<Usuario>();              //ok
     private LinkedList<Atividade> atividades = new LinkedList<Atividade>();             //ok
     private LinkedList<Bolsa> valoresBolsas = new LinkedList<Bolsa>();                  //ok
+    private LinkedList<Usuario> requisitantes = new LinkedList<Usuario>();
     private Period periodoVigencia;                                                     //ok
     private Status status;                                                              //ok
 
     //Construtor
-    public Projeto(int id, String descricao, Usuario coordenador, LocalDateTime dHIni, LocalDateTime dHFim,
+    public Projeto(String descricao, Usuario coordenador, LocalDateTime dHIni, LocalDateTime dHFim,
                    Usuario profissional, Atividade atividade, Bolsa bolsa, Period periodo){
         
         Status status = Status.EM_PROCESSO_DE_CRIACAO;
-        this.id = id;
+        this.id = UUID.randomUUID();
         this.descricao = descricao;
         this.dHInicio = dHIni;
         this.dHFim = dHFim;
@@ -49,6 +51,10 @@ public class Projeto{
 
     public void addBolsa(Bolsa bolsa){
         this.valoresBolsas.add(bolsa);
+    }
+
+    public void addRequisitante(Usuario usuario){
+        this.requisitantes.add(usuario);
     }
 //  ---------------Inserções-------------------}
 
@@ -108,33 +114,35 @@ public class Projeto{
     }
 //  ----------------Edições--------------------}
 
+//  {--------------Consultas--------------------
+    //private 
+
+
+
+//  ---------------Consultas-------------------}
+
+//  {-------------Intercâmbio-------------------
+    public void intercambio(Projeto projeto, Usuario usuario, Atividade atividade){
+        if(this.usuarios.contains(usuario)){
+            int index = projeto.atividades.indexOf(atividade);
+            projeto.atividades.get(index).addProfissional(usuario);
+        }
+    }
+//  --------------Intercâmbio------------------}
+
 //  {---------------Getters---------------------
-    public int getId(){
-        return id;
-    }
+    public UUID getId(){ return id; }
 
-    public String getDescricao(){
-        return descricao;
-    }
+    public String getDescricao(){ return descricao; }
 
-    public LocalDateTime getDataInicio(){
-        return dHInicio;
-    }
+    public LocalDateTime getDataInicio(){ return dHInicio; }
 
-    public LocalDateTime getDataFim(){
-        return dHFim;
-    }
+    public LocalDateTime getDataFim(){ return dHFim; }
 
-    public Usuario getCoordenador(){
-        return coordenador;
-    }
+    public Usuario getCoordenador(){ return coordenador; }
 
-    public Period getVigencia(){
-        return periodoVigencia;
-    }
+    public Period getVigencia(){ return periodoVigencia; }
 
-    public Status getStatus(){
-        return status;
-    }
+    public Status getStatus(){ return status; }
 //  ----------------Getters--------------------}
 }

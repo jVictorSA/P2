@@ -1,35 +1,29 @@
 import java.util.LinkedList;
+import java.sql.Date;
 import java.time.*;
 import java.util.UUID;
+import java.util.Optional;
 
 public class Projeto{
     private LinkedList<Usuario> usuarios = new LinkedList<Usuario>() ;                  //ok
-    private UUID id;                                                                     //ok
-    private String descricao;                                                           //ok
-    private LocalDateTime dHInicio;                                                     //ok
-    private LocalDateTime dHFim;                                                        //ok
+    private UUID id;                                                                    //ok
+    private Optional<String> descricao;                                                 //ok
+    private Optional<LocalDateTime> dHInicio;                                           //ok
+    private Optional<LocalDateTime> dHFim;                                              //ok
     private Usuario coordenador;                                                        //ok
     private LinkedList<Usuario> profissionais = new LinkedList<Usuario>();              //ok
     private LinkedList<Atividade> atividades = new LinkedList<Atividade>();             //ok
     private LinkedList<Bolsa> valoresBolsas = new LinkedList<Bolsa>();                  //ok
-    private LinkedList<Usuario> requisitantes = new LinkedList<Usuario>();
-    private Period periodoVigencia;                                                     //ok
+    private LinkedList<Usuario> requisitantes = new LinkedList<Usuario>();              //ok
+    private Optional<Period> periodoVigencia;                                           //ok
     private Status status;                                                              //ok
 
     //Construtor
-    public Projeto(String descricao, Usuario coordenador, LocalDateTime dHIni, LocalDateTime dHFim,
-                   Usuario profissional, Atividade atividade, Bolsa bolsa, Period periodo){
-        
+    public Projeto(String descricao, Usuario coordenador){
         Status status = Status.EM_PROCESSO_DE_CRIACAO;
         this.id = UUID.randomUUID();
-        this.descricao = descricao;
-        this.dHInicio = dHIni;
-        this.dHFim = dHFim;
+        this.descricao = Optional.of(descricao);
         this.coordenador = coordenador;
-        this.profissionais.add(profissional);
-        this.atividades.add(atividade);
-        this.valoresBolsas.add(bolsa);
-        this.periodoVigencia = periodo ;
         this.status = status;
     }
     
@@ -39,6 +33,26 @@ public class Projeto{
         if (usuario.getTipo() != Tipo.GRADUANDO && usuario.getTipo() != Tipo.MESTRANDO && usuario.getTipo() != Tipo.DOUTORANDO && usuario.getTipo() != Tipo.PROFESSOR){
             addProfissional(usuario);
         }
+    }
+
+    public void addDataInicio(LocalDateTime dhInicio){
+        this.dHInicio = Optional.of(dhInicio);
+        if(dHFim.isPresent()){
+            this.addPeriodo();
+        }
+    }
+
+    public void addDataFim(LocalDateTime dhFim){
+        this.dHFim = Optional.of(dhFim);
+        if(dHInicio.isPresent()){
+            this.addPeriodo();
+        }
+    }
+
+    public void addPeriodo(){
+        LocalDate inicio = this.dHInicio.get().toLocalDate();
+        LocalDate fim = this.dHFim.get().toLocalDate();
+        this.periodoVigencia = Optional.of(Period.between(inicio, fim));
     }
 
     public void addProfissional(Usuario profissional){
@@ -71,14 +85,14 @@ public class Projeto{
     }
 
     public void editarDescricao(String novaDescricao){
-        this.descricao.replace(this.descricao, novaDescricao);
+        this.descricao.get().replace(this.descricao.get(), novaDescricao);
     }
 
     public void editarDataInicio(LocalDateTime novaData){
         LocalDateTime agora = LocalDateTime.now();
 
-        if(this.dHInicio.isAfter(agora)){
-            this.dHInicio = novaData;
+        if(this.dHInicio.get().isAfter(agora)){
+            this.dHInicio = Optional.of(novaData);
         }
     }
 
@@ -86,7 +100,7 @@ public class Projeto{
         LocalDateTime agora = LocalDateTime.now();
 
         if(novaData.isAfter(agora)){
-            this.dHFim = novaData;
+            this.dHFim = Optional.of(novaData);
         }
     }
 
@@ -114,6 +128,21 @@ public class Projeto{
     }
 //  ----------------Edições--------------------}
 
+//  {---------------Status----------------------
+    public boolean informacoesAdicionadas(){
+        if(!usuarios.isEmpty() && descricao.isPresent() && dHInicio.isPresent() && dHFim.isPresent() &
+           !profissionais.isEmpty() && !atividades.isEmpty() && !valoresBolsas.isEmpty() &&
+           !requisitantes.isEmpty() && periodoVigencia.isPresent())
+           { return true; }
+
+        return false;
+    }
+
+    
+
+
+//  ----------------Status---------------------}
+
 //  {--------------Consultas--------------------
     //private 
 
@@ -133,15 +162,15 @@ public class Projeto{
 //  {---------------Getters---------------------
     public UUID getId(){ return id; }
 
-    public String getDescricao(){ return descricao; }
+    public String getDescricao(){ return descricao.get(); }
 
-    public LocalDateTime getDataInicio(){ return dHInicio; }
+    public LocalDateTime getDataInicio(){ return dHInicio.get(); }
 
-    public LocalDateTime getDataFim(){ return dHFim; }
+    public LocalDateTime getDataFim(){ return dHFim.get(); }
 
     public Usuario getCoordenador(){ return coordenador; }
 
-    public Period getVigencia(){ return periodoVigencia; }
+    public Period getVigencia(){ return periodoVigencia.get(); }
 
     public Status getStatus(){ return status; }
 //  ----------------Getters--------------------}

@@ -1,3 +1,5 @@
+import java.time.LocalDateTime;
+
 public class Usuario{
     private String nome;
     private Tipo tipo;
@@ -37,5 +39,25 @@ public class Usuario{
     public void candidatarAtividade(Atividade atividade){
         atividade.addRequisitante(this);
     }
-//  -------------Requisições------------------}    
+//  -------------Requisições------------------}
+
+//  {--Atribuições Professor ou Pesquisador----
+    public void iniciarProjeto(Projeto projeto){
+        if(this == projeto.getCoordenador() && projeto.informacoesAdicionadas()){
+            projeto.editarStatus(Status.INICIADO);
+        }
+    }
+
+    public void projetoEmAndamento(Projeto projeto){
+        if(this == projeto.getCoordenador() && projeto.getDataInicio().isBefore(LocalDateTime.now())){
+            projeto.editarStatus(Status.EM_ANDAMENTO);
+        }
+    }
+
+    public void concluirProjeto(Projeto projeto){
+        if(this == projeto.getCoordenador() && projeto.getStatus() == Status.EM_ANDAMENTO){
+            projeto.editarStatus(Status.CONCLUIDO);
+        }
+    }
+//  ---Atribuições Professor ou Pesquisador---}    
 }

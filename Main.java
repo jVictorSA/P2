@@ -28,12 +28,15 @@ public class Main{
 
         Bolsa bolsa = new Bolsa(200, user1);
 
-        Period periodo = Period.between(data, data2);
-
         System.out.printf("%s e %s",user1.getNome(), user1.getTipo());
 
-        Projeto projeto = new Projeto("Projeto de manipulacao de variaveis", user3, inicio, fim, user7, atividade, bolsa, periodo);
+        Projeto projeto = new Projeto("Projeto de manipulacao de variaveis", user3);
         projeto.addProfissional(user4);
+        projeto.addDataInicio(inicio);
+        projeto.addDataFim(fim);
+        projeto.addProfissional(user7);
+        projeto.addAtividade(atividade);
+        projeto.addBolsa(bolsa);
         projeto.addUsuario(user1);
         projeto.addProfissional(user6);
         projeto.removeProfissional(user6);

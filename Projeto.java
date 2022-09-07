@@ -1,5 +1,4 @@
 import java.util.LinkedList;
-import java.sql.Date;
 import java.time.*;
 import java.util.UUID;
 import java.util.Optional;
@@ -130,7 +129,7 @@ public class Projeto{
 
 //  {---------------Status----------------------
     public boolean informacoesAdicionadas(){
-        if(!usuarios.isEmpty() && descricao.isPresent() && dHInicio.isPresent() && dHFim.isPresent() &
+        if(!usuarios.isEmpty() && descricao.isPresent() && dHInicio.isPresent() && dHFim.isPresent() &&
            !profissionais.isEmpty() && !atividades.isEmpty() && !valoresBolsas.isEmpty() &&
            !requisitantes.isEmpty() && periodoVigencia.isPresent())
            { return true; }
@@ -138,7 +137,7 @@ public class Projeto{
         return false;
     }
 
-    
+
 
 
 //  ----------------Status---------------------}

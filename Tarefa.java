@@ -18,7 +18,7 @@ public class Tarefa{
         this.conclusao = true;
     }
 
-//  {---------------Edições---------------------
+//  {------------------------------------Edições--------------------------------------
     public void editarDescricao(String novaDescricao){
         this.descricao.replace(this.descricao, novaDescricao);
     }
@@ -26,9 +26,9 @@ public class Tarefa{
     public void editarResponsavel(Usuario novoResponsavel){
         this.responsavel = novoResponsavel;
     }
-//  ----------------Edições--------------------}
+//  -------------------------------------Edições-------------------------------------}
 
-//  {---------------Getters---------------------
+//  {-----------------------------------Getters---------------------------------------
     public String getString(){
         return descricao;
     }
@@ -36,5 +36,5 @@ public class Tarefa{
     public Usuario getResponsavel(){
         return responsavel;
     }
-//  ----------------Getters--------------------}
+//  ------------------------------------Getters--------------------------------------}
 }

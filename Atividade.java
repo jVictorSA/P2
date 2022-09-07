@@ -21,7 +21,7 @@ public class Atividade{
         this.responsavel = responsavel;
     }
 
-//  {--------------Inserções--------------------
+//  {-----------------------------------Inserções-------------------------------------
     public void addProfissional(Usuario usuario){
         this.profissionaisEnvolv.add(usuario);
     }
@@ -33,9 +33,9 @@ public class Atividade{
     public void addRequisitante(Usuario usuario){
         this.requisitantes.add(usuario);
     }
-    //  --------------Inserções--------------------}
+//  ------------------------------------Inserções------------------------------------}
 
-//  {--------------Remoções---------------------
+//  {------------------------------------Remoções-------------------------------------
     public void removeProfissional(Usuario usuario){
         this.profissionaisEnvolv.remove(usuario);
     }
@@ -43,9 +43,9 @@ public class Atividade{
     public void removerTarefa(Tarefa tarefa){
         this.tarefas.remove(tarefa);
     }
-//  ---------------Remoções--------------------}
+//  -------------------------------------Remoções------------------------------------}
 
-//  {---------------Edições---------------------
+//  {------------------------------------Edições--------------------------------------
     public void editarProfissional(Usuario atual, Usuario proximo){
         this.profissionaisEnvolv.remove(atual);
         this.profissionaisEnvolv.add(proximo);
@@ -77,10 +77,9 @@ public class Atividade{
             this.dhFimAtv = novaDataFim;
         }
     }
-//  ----------------Edições--------------------}
+//  -------------------------------------Edições-------------------------------------}
 
-//  {---------------Getters---------------------
-
+//  {------------------------------------Getters--------------------------------------
     public UUID getId(){ return id; }
 
     public String getDescricao(){ return descricao; }
@@ -90,6 +89,12 @@ public class Atividade{
     public LocalDateTime getDataFim(){ return dhFimAtv; }
 
     public Usuario getResponsavel(){ return responsavel; }
-//  ----------------Getters--------------------}
+
+    public LinkedList<Usuario> getProfissionais(){ return profissionaisEnvolv; }
+
+    public LinkedList<Tarefa> getTarefas(){ return tarefas; }
+
+    public LinkedList<Usuario> getRequisitantes(){ return requisitantes; }
+//  -----------------------------------Getters----------------------------------}
 
 }

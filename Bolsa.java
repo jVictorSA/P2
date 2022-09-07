@@ -8,7 +8,7 @@ public class Bolsa{
 		this.valorBolsa = valor;
 	}
 
-//  {---------------Edições---------------------
+//  {------------------------------------Edições--------------------------------------
 	public void editarValorBolsa(double novoValor){
 		if(novoValor >= 0){
 			this.valorBolsa = novoValor;
@@ -18,9 +18,9 @@ public class Bolsa{
 	public void editarRecebedor(Usuario novoRecebedor){
 		this.recebedor = novoRecebedor;
 	}
-//  ----------------Edições--------------------}
+//  -------------------------------------Edições-------------------------------------}
 
-//  {---------------Getters---------------------
+//  {-----------------------------------Getters---------------------------------------
 	public double getValorBolsa(){
 		return valorBolsa;
 	}
@@ -28,5 +28,5 @@ public class Bolsa{
 	public Usuario getRecebedor(){
 		return recebedor;
 	}
-//  ----------------Getters--------------------}
+//  ------------------------------------Getters--------------------------------------}
 }

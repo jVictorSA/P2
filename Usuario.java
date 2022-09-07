@@ -11,7 +11,7 @@ public class Usuario{
         this.tipo = tipo;
     }
 
-//  {---------------Edições---------------------
+//  {------------------------------------Edições--------------------------------------
     public void alterarNome(String novoNome){
         this.nome.replace(this.nome, novoNome);
     }
@@ -19,9 +19,9 @@ public class Usuario{
     public void alterarTipo(Tipo novoTipo){
         this.tipo = novoTipo;
     }
-//  ----------------Edições--------------------}
+//  -------------------------------------Edições-------------------------------------}
 
-//  {---------------Getters---------------------
+//  {------------------------------------Getters--------------------------------------
     public String getNome(){
         return nome;
     }
@@ -29,9 +29,9 @@ public class Usuario{
     public Tipo getTipo(){
         return tipo;
     }
-//  ----------------Getters--------------------}
+//  -------------------------------------Getters-------------------------------------}
 
-//  {-------------Requisições-------------------
+//  {----------------------------------Requisições------------------------------------
     public void candidatarProjeto(Projeto projeto){
         projeto.addRequisitante(this);
     }
@@ -39,9 +39,9 @@ public class Usuario{
     public void candidatarAtividade(Atividade atividade){
         atividade.addRequisitante(this);
     }
-//  -------------Requisições------------------}
+//  -----------------------------------Requisições-----------------------------------}
 
-//  {--Atribuições Professor ou Pesquisador----
+//  {-----------------------Atribuições Professor ou Pesquisador----------------------
     public void iniciarProjeto(Projeto projeto){
         if(this == projeto.getCoordenador() && projeto.informacoesAdicionadas()){
             projeto.editarStatus(Status.INICIADO);
@@ -59,5 +59,5 @@ public class Usuario{
             projeto.editarStatus(Status.CONCLUIDO);
         }
     }
-//  ---Atribuições Professor ou Pesquisador---}    
+//  ------------------------Atribuições Professor ou Pesquisador---------------------}
 }

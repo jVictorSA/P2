@@ -26,7 +26,7 @@ public class Projeto{
         this.status = status;
     }
     
-//  {--------------Inserções--------------------
+//  {-----------------------------------Inserções-------------------------------------
     public void addUsuario(Usuario usuario){
         this.usuarios.add(usuario);
         if (usuario.getTipo() != Tipo.GRADUANDO && usuario.getTipo() != Tipo.MESTRANDO && usuario.getTipo() != Tipo.DOUTORANDO && usuario.getTipo() != Tipo.PROFESSOR){
@@ -69,15 +69,15 @@ public class Projeto{
     public void addRequisitante(Usuario usuario){
         this.requisitantes.add(usuario);
     }
-//  ---------------Inserções-------------------}
+//  ------------------------------------Inserções------------------------------------}
 
-//  {---------------Remoções--------------------
+//  {------------------------------------Remoções-------------------------------------
     public void removeProfissional(Usuario profissional) {
     	this.profissionais.remove(profissional);
     }
-//  ----------------Remoções-------------------}
+//  -------------------------------------Remoções------------------------------------}
 
-//  {---------------Edições---------------------
+//  {------------------------------------Edições--------------------------------------
     public void editarUsuario(Usuario usuarioAtual, Usuario novoUsuario){
         this.usuarios.remove(usuarioAtual);
         this.usuarios.add(novoUsuario);
@@ -125,9 +125,9 @@ public class Projeto{
     public void editarStatus(Status novoStatus){
         this.status = novoStatus;
     }
-//  ----------------Edições--------------------}
+//  -------------------------------------Edições-------------------------------------}
 
-//  {---------------Status----------------------
+//  {------------------------------------Status---------------------------------------
     public boolean informacoesAdicionadas(){
         if(!usuarios.isEmpty() && descricao.isPresent() && dHInicio.isPresent() && dHFim.isPresent() &&
            !profissionais.isEmpty() && !atividades.isEmpty() && !valoresBolsas.isEmpty() &&
@@ -136,29 +136,20 @@ public class Projeto{
 
         return false;
     }
+//  -------------------------------------Status--------------------------------------}
 
-
-
-
-//  ----------------Status---------------------}
-
-//  {--------------Consultas--------------------
-    //private 
-
-
-
-//  ---------------Consultas-------------------}
-
-//  {-------------Intercâmbio-------------------
+//  {---------------------------------Intercâmbio-------------------------------------
     public void intercambio(Projeto projeto, Usuario usuario, Atividade atividade){
         if(this.usuarios.contains(usuario)){
             int index = projeto.atividades.indexOf(atividade);
             projeto.atividades.get(index).addProfissional(usuario);
         }
     }
-//  --------------Intercâmbio------------------}
+//  ----------------------------------Intercâmbio------------------------------------}
 
-//  {---------------Getters---------------------
+//  {-----------------------------------Getters---------------------------------------
+    public LinkedList<Usuario> getUsuarios(){ return usuarios; }
+
     public UUID getId(){ return id; }
 
     public String getDescricao(){ return descricao.get(); }
@@ -169,8 +160,16 @@ public class Projeto{
 
     public Usuario getCoordenador(){ return coordenador; }
 
+    public LinkedList<Usuario> getProfissionais(){ return profissionais; }
+
+    public LinkedList<Atividade> getAtividades(){ return atividades; }
+
+    public LinkedList<Bolsa> getBolsas(){ return valoresBolsas; }
+
+    public LinkedList<Usuario> getRequisitantes(){ return requisitantes; }
+
     public Period getVigencia(){ return periodoVigencia.get(); }
 
     public Status getStatus(){ return status; }
-//  ----------------Getters--------------------}
+//  ------------------------------------Getters--------------------------------------}
 }

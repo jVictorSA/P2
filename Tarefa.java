@@ -18,6 +18,10 @@ public class Tarefa{
         this.conclusao = true;
     }
 
+    public void printar(){
+        System.out.printf("\t\t---->\tResponsavel: %s\n\t\t---->\tDescricao: %s\n", responsavel.getNome(), descricao);
+    }
+
 //  {------------------------------------Edições--------------------------------------
     public void editarDescricao(String novaDescricao){
         this.descricao.replace(this.descricao, novaDescricao);
@@ -29,7 +33,7 @@ public class Tarefa{
 //  -------------------------------------Edições-------------------------------------}
 
 //  {-----------------------------------Getters---------------------------------------
-    public String getString(){
+    public String getDescricao(){
         return descricao;
     }
 

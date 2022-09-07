@@ -12,6 +12,29 @@ public class Atividade{
     private LinkedList<Tarefa> tarefas = new LinkedList<Tarefa>();                  //ok
     private LinkedList<Usuario> requisitantes = new LinkedList<Usuario>();
 
+    public void relatorio(){
+        System.out.println("\tAtividade " + id.toString());
+        System.out.println("\t\tResponsavel: " + responsavel.getNome());
+        System.out.println("\t\tDescricao: " + descricao);
+        System.out.println("\t\tData de inicio: " + dhInicioAtv.toString());
+        System.out.println("\t\tData de termino: " + dhFimAtv.toString());
+        System.out.println("\t\ttProfissionais envolvidos:");
+        for (Usuario profissional : profissionaisEnvolv) {
+            System.out.printf("\t");
+            profissional.printar();
+        }
+        System.out.println("\t\tTarefas:");
+        for (Tarefa tarefa : tarefas){
+            tarefa.printar();
+        }
+        System.out.println("\t\tAlunos requisitando entrada na tarefa:");
+        for (Usuario aluno : requisitantes){
+            System.out.printf("\t");
+            aluno.printar();
+        }
+        System.out.println("\n-------------------------------------------------------------------------\n");
+    }
+
     //Construtor
     public Atividade(String descricao, Usuario responsavel, LocalDateTime dHIni, LocalDateTime dHFim){
         this.id = UUID.randomUUID();

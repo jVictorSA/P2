@@ -17,6 +17,38 @@ public class Projeto{
     private Optional<Period> periodoVigencia;                                           //ok
     private Status status;                                                              //ok
 
+    public void relatorio(){
+        System.out.println("Projeto: " + id.toString());
+        System.out.println("\tCoordenador: " + coordenador.getNome());
+        System.out.println("\tDescricao: " + descricao.get());
+        System.out.println("\tAlunos:");
+        for (Usuario usuario : usuarios){
+            usuario.printar();
+        }
+        System.out.println("\tData de inicio: " + dHInicio.get().toString());
+        System.out.println("\tData de termino: " + dHFim.get().toString());
+        System.out.println("\tProfissionais envolvidos: ");
+        for (Usuario profissional : profissionais){
+            profissional.printar();
+        }
+        System.out.println("\tAtividades:");
+        for (Atividade atividade : atividades){
+            atividade.relatorio();
+        }
+        System.out.println("\tBolsas do projeto:");
+        for (Bolsa bolsa : valoresBolsas){
+            bolsa.printar();
+        }
+        System.out.println("\tAlunos requisitando entrada no projeto:");
+        for (Usuario aluno : requisitantes) {
+            aluno.printar();
+        }
+        System.out.println("\tPeriodo de vigencia do projeto: " + periodoVigencia.get().toString());
+        System.out.println("\tStatus do projeto: " + status.toString());
+        System.out.println("\n-------------------------------------------------------------------------\n");
+    }
+
+
     //Construtor
     public Projeto(String descricao, Usuario coordenador){
         Status status = Status.EM_PROCESSO_DE_CRIACAO;

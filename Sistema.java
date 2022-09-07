@@ -13,6 +13,12 @@ public class Sistema {
     }
 //  ----------------------------------Construtores-----------------------------------}
 
+    public void relatorio(){
+        for (Projeto projeto : projetos) {
+            projeto.relatorio();
+        }
+    }
+
 //  {-----------------------------------Inserções-------------------------------------
     public void addProjeto(Projeto projeto){
         this.projetos.add(projeto);

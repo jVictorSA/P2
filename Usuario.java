@@ -11,6 +11,10 @@ public class Usuario{
         this.tipo = tipo;
     }
 
+    public void printar(){
+        System.out.printf("\t---->\t%s\t%s\n", nome, tipo.toString());
+    }
+
 //  {------------------------------------Edições--------------------------------------
     public void alterarNome(String novoNome){
         this.nome.replace(this.nome, novoNome);

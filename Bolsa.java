@@ -1,11 +1,15 @@
 public class Bolsa{
-	double valorBolsa;
-	Usuario recebedor;
+	private double valorBolsa;
+	private Usuario recebedor;
 	
 	//Construtor
 	public Bolsa(double valor, Usuario recebedor) {
 		this.recebedor = recebedor;
 		this.valorBolsa = valor;
+	}
+
+	public void printar(){
+		System.out.printf("\t---->\t%s\t%lfR$\n", recebedor.getNome(), valorBolsa);
 	}
 
 //  {------------------------------------Edições--------------------------------------

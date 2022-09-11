@@ -179,6 +179,15 @@ public class Projeto{
     }
 //  ----------------------------------Intercâmbio------------------------------------}
 
+//  {------------------------------Pagamento Bolsas-----------------------------------
+    public void pagarBolsas(){
+        for (Bolsa bolsa : valoresBolsas) {
+            bolsa.pagar();
+        }
+    }
+
+//  -------------------------------Pagamento Bolsas----------------------------------}
+
 //  {-----------------------------------Getters---------------------------------------
     public LinkedList<Usuario> getUsuarios(){ return usuarios; }
 

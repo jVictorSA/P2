@@ -2,14 +2,14 @@ import java.time.*;
 
 public class Main{
     public static void main(String[] args){
-        Usuario user1 = new Usuario("Robson", Tipo.GRADUANDO);
-        Usuario user2 = new Usuario("Alissa", Tipo.DOUTORANDO);
-        Usuario user3 = new Usuario("Menezes", Tipo.PROFESSOR);
-        Usuario user4 = new Usuario("Julia", Tipo.DEV);
-        Usuario user5 = new Usuario("Epaminondas", Tipo.TECNICO);
-        Usuario user6 = new Usuario("Nicole", Tipo.ANALISTA);
-        Usuario user7 = new Usuario("Gabriel", Tipo.TESTADOR);
-        Usuario user8 = new Usuario("Carlos", Tipo.PROFESSOR);
+        Usuario user1 = new Usuario("Robson", Tipo.GRADUANDO, "rb.gmail.com", "ij9a0o");
+        Usuario user2 = new Usuario("Alessa", Tipo.DOUTORANDO, "alessasilenthill@hotmail.com", "9u2saac");
+        Usuario user3 = new Usuario("Menezes", Tipo.PROFESSOR, "menezes@ufal.edu", "hsaiu021");
+        Usuario user4 = new Usuario("Julia", Tipo.DEV, "juju87@gmail.com", "j81239la");
+        Usuario user5 = new Usuario("Epaminondas", Tipo.TECNICO, "vieira.epaminondas@uol.com", "9iuesadsc");
+        Usuario user6 = new Usuario("Nicole", Tipo.ANALISTA, "nicoleramos@outlook.com", "l921_sac");
+        Usuario user7 = new Usuario("Gabriel", Tipo.TESTADOR, "gabrieldasnovinhas69@hotmail.com", "j821uraca");
+        Usuario user8 = new Usuario("Carlos", Tipo.PROFESSOR, "carlos.alberto@gmail.com", "y47-cal_1");
         
         LocalDate data = LocalDate.of(2022, 8, 01);
         LocalTime hora = LocalTime.of(9, 30);

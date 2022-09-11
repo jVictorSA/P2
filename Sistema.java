@@ -1,15 +1,26 @@
 import java.util.LinkedList;
+import java.util.Scanner;
 
 public class Sistema {
     private LinkedList<Projeto> projetos = new LinkedList<Projeto>();
+    public Usuario usuarioLogado;
 
 //  {---------------------------------Construtores------------------------------------
-    public Sistema(){}
+    public Sistema(){
+    }
     public Sistema(Projeto projeto){
-        this.projetos.add(projeto);
+        if(usuarioLogado.getPrivilegio() == Privilegios.ADMIN){
+            this.projetos.add(projeto);
+        }else{
+            System.out.println("Somente Administradores podem adicionar projetos");
+        }
     }
     public Sistema(LinkedList<Projeto> projetos){
-        this.projetos = projetos;
+        if(usuarioLogado.getPrivilegio() == Privilegios.ADMIN){
+            this.projetos = projetos;
+        }else{
+            System.out.println("Somente Administradores podem adicionar projetos");
+        }
     }
 //  ----------------------------------Construtores-----------------------------------}
 
@@ -19,16 +30,53 @@ public class Sistema {
         }
     }
 
+    public boolean Logar(Usuario usuario){
+        Scanner input = new Scanner(System.in);
+        System.out.println("Digite seu email: ");
+        String login = input.nextLine();
+        System.out.println("Digite sua senha: ");
+        String senha = input.nextLine();
+        if(login == usuario.getEmail() && senha == usuario.getSenha()){
+            usuarioLogado = usuario;
+            input.close();
+            return true;
+        }
+        
+        input.close();
+        return false;
+    }
+
+    public void recuperarSenha(Usuario usuario){
+        Scanner input = new Scanner(System.in);
+        System.out.println("Digite seu email: ");
+        String login = input.nextLine();
+        if(login == usuario.getEmail()){
+            System.out.println("Digite sua nova senha: ");
+            String novaSenha = input.nextLine();
+            usuario.alterarSenha(novaSenha);
+            System.out.println("Senha alterada com sucesso");
+        }
+        input.close();
+    }
+
 //  {-----------------------------------Inserções-------------------------------------
-    public void addProjeto(Projeto projeto){
-        this.projetos.add(projeto);
+    public void addProjeto(Projeto projeto, Usuario usuario){
+        if(usuario.getPrivilegio() == Privilegios.ADMIN){
+            this.projetos.add(projeto);
+        }else{
+            System.out.println("Somente Administradores podem adicionar projetos");
+        }
     }
 //  ------------------------------------Inserções------------------------------------}
 
 
 //  {-----------------------------------Remoções--------------------------------------
-    public void removeProjeto(Projeto projeto){
-        this.projetos.remove(projeto);
+    public void removeProjeto(Projeto projeto, Usuario usuario){
+        if(usuario.getPrivilegio() == Privilegios.ADMIN){
+            this.projetos.remove(projeto);
+        }else{
+            System.out.println("Somente Administradores podem remover projetos");
+        }
     }
 //  ------------------------------------Remoções-------------------------------------}
 
@@ -76,5 +124,13 @@ public class Sistema {
         return atividade.getProfissionais();
     }
 //  -----------------------------------Consultas-------------------------------------}
+
+//  {------------------------------Pagamento Bolsas-----------------------------------
+    public void pagarBolsas(){
+        for (Projeto projeto : projetos){
+            projeto.pagarBolsas();
+        }
+    }
+//  -------------------------------Pagamento Bolsas----------------------------------}
 
 }

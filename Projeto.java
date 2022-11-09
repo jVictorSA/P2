@@ -22,28 +22,60 @@ public class Projeto{
         System.out.println("\tCoordenador: " + coordenador.getNome());
         System.out.println("\tDescricao: " + descricao.get());
         System.out.println("\tAlunos:");
-        for (Usuario usuario : usuarios){
-            usuario.printar();
+        if(usuarios == null || (usuarios.size() == 0)){
+            System.out.println("\tNao ha alunos cadastrados!");
+        }else{
+            for (Usuario usuario : usuarios){
+                usuario.printar();
+            }
         }
-        System.out.println("\tData de inicio: " + dHInicio.get().toString());
-        System.out.println("\tData de termino: " + dHFim.get().toString());
+        if(dHInicio == null){
+            System.out.println("\tData de inicio nao inserida!");
+        }else{
+            System.out.println("\tData de inicio: " + dHInicio.get().toString());
+        }
+        if(dHFim == null){
+            System.out.println("\tData de inicio nao inserida!");
+        }else{
+            System.out.println("\tData de termino: " + dHFim.get().toString());
+        }
         System.out.println("\tProfissionais envolvidos: ");
-        for (Usuario profissional : profissionais){
-            profissional.printar();
+        if(profissionais == null || profissionais.size() == 0){
+            System.out.println("\tNao ha profissionais cadastrados!");            
+        }else{
+            for (Usuario profissional : profissionais){
+                profissional.printar();
+            }
         }
         System.out.println("\tAtividades:");
-        for (Atividade atividade : atividades){
-            atividade.relatorio();
+        if(atividades == null || atividades.size() == 0){            
+            System.out.println("\tNao ha atividades cadastradas!");
+        }else{
+            for (Atividade atividade : atividades){
+                atividade.relatorio();
+            }
         }
         System.out.println("\tBolsas do projeto:");
-        for (Bolsa bolsa : valoresBolsas){
-            bolsa.printar();
+        if(valoresBolsas == null || valoresBolsas.size() == 0){
+            System.out.println("\tNao ha bolsas cadastradas!");
+        }else{
+            for (Bolsa bolsa : valoresBolsas){
+                bolsa.printar();
+            }
         }
         System.out.println("\tAlunos requisitando entrada no projeto:");
-        for (Usuario aluno : requisitantes) {
-            aluno.printar();
+        if(requisitantes == null || requisitantes.size() == 0){
+            System.out.println("\tNao ha alunos requisitantes!");
+        }else{
+            for (Usuario aluno : requisitantes) {
+                aluno.printar();
+            }
         }
-        System.out.println("\tPeriodo de vigencia do projeto: " + periodoVigencia.get().toString());
+        if(periodoVigencia == null){
+            System.out.println("\tPeriodo de vigencia de projeto nao cadastrado!");
+        }else{
+            System.out.println("\tPeriodo de vigencia do projeto: " + periodoVigencia.get().toString());
+        }
         System.out.println("\tStatus do projeto: " + status.toString());
         System.out.println("\n-------------------------------------------------------------------------\n");
     }
@@ -64,24 +96,36 @@ public class Projeto{
         this.usuarios.add(usuario);
     }
 
-    public void addDataInicio(LocalDate dhInicio){
-        this.dHInicio = Optional.of(dhInicio);
-        if(dHFim.isPresent()){
-            this.addPeriodo();
+    public boolean addDataInicio(LocalDate dhInicio){
+        if(dhInicio.isAfter(LocalDate.now())){
+            this.dHInicio = Optional.of(dhInicio);
+            if(dHFim.isPresent()){
+                this.addPeriodo();
+            }
+            return true;
+        }else{
+            return false;
         }
     }
 
-    public void addDataFim(LocalDate dhFim){
-        this.dHFim = Optional.of(dhFim);
-        if(dHInicio.isPresent()){
-            this.addPeriodo();
+    public boolean addDataFim(LocalDate dhFim){
+        if (dhFim.isAfter(LocalDate.now())) {    
+            this.dHFim = Optional.of(dhFim);
+            if(dHInicio.isPresent()){
+                this.addPeriodo();
+            }
+            return true;
+        } else {
+            return false;
         }
+
     }
 
     public void addPeriodo(){
         LocalDate inicio = this.dHInicio.get();
         LocalDate fim = this.dHFim.get();
         this.periodoVigencia = Optional.of(Period.between(inicio, fim));
+        System.out.println("\nPeriodo de vigencia adicionado");
     }
 
     public void addProfissional(Usuario profissional){
@@ -106,6 +150,10 @@ public class Projeto{
     	this.profissionais.remove(profissional);
     }
 
+    public void removeUsuario(Usuario usuario) {
+    	this.usuarios.remove(usuario);
+    }
+
     public void removeAtividade(Atividade atividade) {
     	this.atividades.remove(atividade);
     }
@@ -121,20 +169,24 @@ public class Projeto{
         this.descricao.get().replace(this.descricao.get(), novaDescricao);
     }
 
-    public void editarDataInicio(LocalDate novaData){
+    public boolean editarDataInicio(LocalDate novaData){
         LocalDate agora = LocalDate.now();
 
         if(this.dHInicio.get().isAfter(agora)){
             this.dHInicio = Optional.of(novaData);
+            return true;
         }
+        return false;
     }
 
-    public void editarDataFim(LocalDate novaData){
+    public boolean editarDataFim(LocalDate novaData){
         LocalDate agora = LocalDate.now();
 
         if(novaData.isAfter(agora)){
             this.dHFim = Optional.of(novaData);
+            return true;
         }
+        return false;
     }
 
     public void editarCoordenador(Usuario novoCoordenador){
@@ -156,12 +208,33 @@ public class Projeto{
         this.valoresBolsas.add(novaBolsa);
     }
 
-    public void editarStatus(Status novoStatus){
-        this.status = novoStatus;
+    public boolean iniciarProjeto(){
+        if(informacoesAdicionadas()){
+            this.status = Status.INICIADO;
+            return true;
+        }
+        return false;
     }
 //  -------------------------------------Edições-------------------------------------}
 
 //  {------------------------------------Status---------------------------------------
+
+    public boolean projetoEmAndamento(){
+        if(this.status == Status.INICIADO){
+            this.status = Status.EM_ANDAMENTO;
+            return true;
+        }
+        return false;
+    }
+
+    public boolean concluir(){
+        if(this.status == Status.EM_ANDAMENTO){
+            this.status = Status.CONCLUIDO;
+            return true;
+        }
+        return false;
+    }
+
     public boolean informacoesAdicionadas(){
         if(!usuarios.isEmpty() && descricao.isPresent() && dHInicio.isPresent() && dHFim.isPresent() &&
            !profissionais.isEmpty() && !atividades.isEmpty() && !valoresBolsas.isEmpty() &&

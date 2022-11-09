@@ -11,7 +11,7 @@ public class Tecnico extends Usuario{
     }
 
     public void printar(){
-        System.out.printf("\t---->\t%s\t%s\n", nome, "Técnico");
+        System.out.printf("\t---->\t%s\t%s\t%s\n", nome, "Técnico", email);
     }
 
 //  {------------------------------------Edições--------------------------------------

@@ -1,4 +1,3 @@
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Professor extends Usuario{
@@ -29,7 +28,7 @@ public class Professor extends Usuario{
     }
 
     public void printar(){
-        System.out.printf("\t---->\t%s\t%s\n", nome, "Professor");
+        System.out.printf("\t---->\t%s\t%s\t%s\n", nome, "Professor", email);
     }
 
 //  {------------------------------------Edições--------------------------------------
@@ -52,23 +51,4 @@ public class Professor extends Usuario{
 
     public String getSenha(){ return senha; }
 //  -------------------------------------Getters-------------------------------------}
-
-
-    public void iniciarProjeto(Projeto projeto){
-        if(this == projeto.getCoordenador() && projeto.informacoesAdicionadas()){
-            projeto.editarStatus(Status.INICIADO);
-        }
-    }
-
-    public void projetoEmAndamento(Projeto projeto){
-        if(this == projeto.getCoordenador() && projeto.getDataInicio().isBefore(LocalDate.now())){
-            projeto.editarStatus(Status.EM_ANDAMENTO);
-        }
-    }
-
-    public void concluirProjeto(Projeto projeto){
-        if(this == projeto.getCoordenador() && projeto.getStatus() == Status.EM_ANDAMENTO){
-            projeto.editarStatus(Status.CONCLUIDO);
-        }
-    }
 }

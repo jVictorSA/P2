@@ -19,18 +19,28 @@ public class Atividade{
         System.out.println("\t\tData de inicio: " + dhInicioAtv.toString());
         System.out.println("\t\tData de termino: " + dhFimAtv.toString());
         System.out.println("\t\ttProfissionais envolvidos:");
-        for (Usuario profissional : profissionaisEnvolv) {
-            System.out.printf("\t");
-            profissional.printar();
-        }
-        System.out.println("\t\tTarefas:");
-        for (Tarefa tarefa : tarefas){
-            tarefa.printar();
-        }
-        System.out.println("\t\tAlunos requisitando entrada na tarefa:");
-        for (Usuario aluno : requisitantes){
-            System.out.printf("\t");
-            aluno.printar();
+        if(profissionaisEnvolv == null || (profissionaisEnvolv.size() == 0)){
+            System.out.println("\t\tNao ha profissionais cadastrados!");
+        }else{
+            for (Usuario profissional : profissionaisEnvolv) {
+                System.out.printf("\t");
+                profissional.printar();
+            }
+        }if(tarefas == null || (tarefas.size() == 0)){
+            System.out.println("\t\tNao ha tarefas cadastradas!");
+        }else{
+            System.out.println("\t\tTarefas:");
+            for (Tarefa tarefa : tarefas){
+                tarefa.printar();
+            }
+        }if(requisitantes == null || (requisitantes.size() == 0)){
+            System.out.println("\tNao ha alunos requisitando entrada na tarefa!");
+        }else{
+            System.out.println("\t\tAlunos requisitando entrada na tarefa:");
+            for (Usuario aluno : requisitantes){
+                System.out.printf("\t");
+                aluno.printar();
+            }
         }
         System.out.println("\n-------------------------------------------------------------------------\n");
     }

@@ -9,7 +9,7 @@ public class Bolsa{
 	}
 
 	public void printar(){
-		System.out.printf("\t---->\t%s\t%lfR$\n", recebedor.getNome(), valorBolsa);
+		System.out.printf("\t---->\t%s\t%lf R$\n", recebedor.getNome(), valorBolsa);
 	}
 
 //  {------------------------------------Edições--------------------------------------

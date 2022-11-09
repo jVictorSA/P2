@@ -22,7 +22,7 @@ public class Aluno extends Usuario{
     }
 
     public void printar(){
-        System.out.printf("\t---->\t%s\t%s\n", nome, tipo.toString());
+        System.out.printf("\t---->\t%s\t%s\n\t---->\t%s\n", nome, tipo.toString(),email);
     }
 
 //  {------------------------------------Bolsas---------------------------------------

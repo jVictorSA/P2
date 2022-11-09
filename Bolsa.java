@@ -1,9 +1,9 @@
 public class Bolsa{
 	private double valorBolsa;
-	private Usuario recebedor;
+	private Aluno recebedor;
 	
 	//Construtor
-	public Bolsa(double valor, Usuario recebedor) {
+	public Bolsa(double valor, Aluno recebedor) {
 		this.recebedor = recebedor;
 		this.valorBolsa = valor;
 	}
@@ -19,7 +19,7 @@ public class Bolsa{
 		}
 	}
 
-	public void editarRecebedor(Usuario novoRecebedor){
+	public void editarRecebedor(Aluno novoRecebedor){
 		this.recebedor = novoRecebedor;
 	}
 //  -------------------------------------Edições-------------------------------------}

@@ -5,8 +5,8 @@ import java.util.UUID;
 public class Atividade{
     private UUID id;
     private String descricao;           //ok
-    private LocalDateTime dhInicioAtv;  //ok
-    private LocalDateTime dhFimAtv;     //ok
+    private LocalDate dhInicioAtv;  //ok
+    private LocalDate dhFimAtv;     //ok
     private Usuario responsavel;        //ok
     private LinkedList<Usuario> profissionaisEnvolv = new LinkedList<Usuario>();    //ok
     private LinkedList<Tarefa> tarefas = new LinkedList<Tarefa>();                  //ok
@@ -36,7 +36,7 @@ public class Atividade{
     }
 
     //Construtor
-    public Atividade(String descricao, Usuario responsavel, LocalDateTime dHIni, LocalDateTime dHFim){
+    public Atividade(String descricao, Usuario responsavel, LocalDate dHIni, LocalDate dHFim){
         this.id = UUID.randomUUID();
         this.descricao = descricao;
         this.dhInicioAtv = dHIni;
@@ -87,15 +87,15 @@ public class Atividade{
         this.responsavel = novoResponsavel;
     }
 
-    public void editarDataInicio(LocalDateTime novaDataInicio){
-        LocalDateTime agora = LocalDateTime.now();
+    public void editarDataInicio(LocalDate novaDataInicio){
+        LocalDate agora = LocalDate.now();
         if(this.dhInicioAtv.isAfter(agora)){
             this.dhInicioAtv = novaDataInicio;
         }
     }
 
-    public void editarDataFim(LocalDateTime novaDataFim){
-        LocalDateTime agora = LocalDateTime.now();
+    public void editarDataFim(LocalDate novaDataFim){
+        LocalDate agora = LocalDate.now();
         if(novaDataFim.isAfter(agora)){
             this.dhFimAtv = novaDataFim;
         }
@@ -107,9 +107,9 @@ public class Atividade{
 
     public String getDescricao(){ return descricao; }
 
-    public LocalDateTime getDataInicio(){ return dhInicioAtv; }
+    public LocalDate getDataInicio(){ return dhInicioAtv; }
 
-    public LocalDateTime getDataFim(){ return dhFimAtv; }
+    public LocalDate getDataFim(){ return dhFimAtv; }
 
     public Usuario getResponsavel(){ return responsavel; }
 

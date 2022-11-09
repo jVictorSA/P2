@@ -7,8 +7,8 @@ public class Projeto{
     private LinkedList<Usuario> usuarios = new LinkedList<Usuario>() ;                  //ok
     private UUID id;                                                                    //ok
     private Optional<String> descricao;                                                 //ok
-    private Optional<LocalDateTime> dHInicio;                                           //ok
-    private Optional<LocalDateTime> dHFim;                                              //ok
+    private Optional<LocalDate> dHInicio;                                           //ok
+    private Optional<LocalDate> dHFim;                                              //ok
     private Usuario coordenador;                                                        //ok
     private LinkedList<Usuario> profissionais = new LinkedList<Usuario>();              //ok
     private LinkedList<Atividade> atividades = new LinkedList<Atividade>();             //ok
@@ -49,7 +49,7 @@ public class Projeto{
     }
 
 
-    //Construtor
+    //Construtores
     public Projeto(String descricao, Usuario coordenador){
         Status status = Status.EM_PROCESSO_DE_CRIACAO;
         this.id = UUID.randomUUID();
@@ -58,22 +58,20 @@ public class Projeto{
         this.status = status;
     }
     
+    
 //  {-----------------------------------Inserções-------------------------------------
     public void addUsuario(Usuario usuario){
         this.usuarios.add(usuario);
-        if (usuario.getTipo() != Tipo.GRADUANDO && usuario.getTipo() != Tipo.MESTRANDO && usuario.getTipo() != Tipo.DOUTORANDO && usuario.getTipo() != Tipo.PROFESSOR){
-            addProfissional(usuario);
-        }
     }
 
-    public void addDataInicio(LocalDateTime dhInicio){
+    public void addDataInicio(LocalDate dhInicio){
         this.dHInicio = Optional.of(dhInicio);
         if(dHFim.isPresent()){
             this.addPeriodo();
         }
     }
 
-    public void addDataFim(LocalDateTime dhFim){
+    public void addDataFim(LocalDate dhFim){
         this.dHFim = Optional.of(dhFim);
         if(dHInicio.isPresent()){
             this.addPeriodo();
@@ -81,8 +79,8 @@ public class Projeto{
     }
 
     public void addPeriodo(){
-        LocalDate inicio = this.dHInicio.get().toLocalDate();
-        LocalDate fim = this.dHFim.get().toLocalDate();
+        LocalDate inicio = this.dHInicio.get();
+        LocalDate fim = this.dHFim.get();
         this.periodoVigencia = Optional.of(Period.between(inicio, fim));
     }
 
@@ -107,6 +105,10 @@ public class Projeto{
     public void removeProfissional(Usuario profissional) {
     	this.profissionais.remove(profissional);
     }
+
+    public void removeAtividade(Atividade atividade) {
+    	this.atividades.remove(atividade);
+    }
 //  -------------------------------------Remoções------------------------------------}
 
 //  {------------------------------------Edições--------------------------------------
@@ -119,16 +121,16 @@ public class Projeto{
         this.descricao.get().replace(this.descricao.get(), novaDescricao);
     }
 
-    public void editarDataInicio(LocalDateTime novaData){
-        LocalDateTime agora = LocalDateTime.now();
+    public void editarDataInicio(LocalDate novaData){
+        LocalDate agora = LocalDate.now();
 
         if(this.dHInicio.get().isAfter(agora)){
             this.dHInicio = Optional.of(novaData);
         }
     }
 
-    public void editarDataFim(LocalDateTime novaData){
-        LocalDateTime agora = LocalDateTime.now();
+    public void editarDataFim(LocalDate novaData){
+        LocalDate agora = LocalDate.now();
 
         if(novaData.isAfter(agora)){
             this.dHFim = Optional.of(novaData);
@@ -195,9 +197,9 @@ public class Projeto{
 
     public String getDescricao(){ return descricao.get(); }
 
-    public LocalDateTime getDataInicio(){ return dHInicio.get(); }
+    public LocalDate getDataInicio(){ return dHInicio.get(); }
 
-    public LocalDateTime getDataFim(){ return dHFim.get(); }
+    public LocalDate getDataFim(){ return dHFim.get(); }
 
     public Usuario getCoordenador(){ return coordenador; }
 

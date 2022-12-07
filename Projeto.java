@@ -4,18 +4,18 @@ import java.util.UUID;
 import java.util.Optional;
 
 public class Projeto{
-    private LinkedList<Usuario> usuarios = new LinkedList<Usuario>() ;                  //ok
-    private UUID id;                                                                    //ok
-    private Optional<String> descricao;                                                 //ok
-    private Optional<LocalDate> dHInicio;                                           //ok
-    private Optional<LocalDate> dHFim;                                              //ok
-    private Usuario coordenador;                                                        //ok
-    private LinkedList<Usuario> profissionais = new LinkedList<Usuario>();              //ok
-    private LinkedList<Atividade> atividades = new LinkedList<Atividade>();             //ok
-    private LinkedList<Bolsa> valoresBolsas = new LinkedList<Bolsa>();                  //ok
-    private LinkedList<Usuario> requisitantes = new LinkedList<Usuario>();              //ok
-    private Optional<Period> periodoVigencia;                                           //ok
-    private Status status;                                                              //ok
+    private LinkedList<Usuario> usuarios = new LinkedList<Usuario>();
+    private UUID id;
+    private Optional<String> descricao;
+    private Optional<LocalDate> dHInicio;
+    private Optional<LocalDate> dHFim;
+    private Usuario coordenador;
+    private LinkedList<Usuario> profissionais = new LinkedList<Usuario>();
+    private LinkedList<Atividade> atividades = new LinkedList<Atividade>();
+    private LinkedList<Bolsa> valoresBolsas = new LinkedList<Bolsa>();
+    private LinkedList<Usuario> requisitantes = new LinkedList<Usuario>();
+    private Optional<Period> periodoVigencia;
+    private Status status;
 
     public void relatorio(){
         System.out.println("Projeto: " + id.toString());
@@ -236,11 +236,16 @@ public class Projeto{
     }
 
     public boolean informacoesAdicionadas(){
-        if(!usuarios.isEmpty() && descricao.isPresent() && dHInicio.isPresent() && dHFim.isPresent() &&
-           !profissionais.isEmpty() && !atividades.isEmpty() && !valoresBolsas.isEmpty() &&
-           !requisitantes.isEmpty() && periodoVigencia.isPresent())
+        try {
+         if(usuarios != null && descricao != null && dHInicio != null && dHFim != null &&
+           profissionais != null  && atividades != null && valoresBolsas != null &&
+           requisitantes != null && periodoVigencia != null)
            { return true; }
-
+            
+        } catch (NullPointerException e) {
+            System.out.println("npe");
+            return false;
+        }
         return false;
     }
 //  -------------------------------------Status--------------------------------------}

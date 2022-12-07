@@ -4,12 +4,12 @@ import java.util.UUID;
 
 public class Atividade{
     private UUID id;
-    private String descricao;           //ok
-    private LocalDate dhInicioAtv;  //ok
-    private LocalDate dhFimAtv;     //ok
-    private Usuario responsavel;        //ok
-    private LinkedList<Usuario> profissionaisEnvolv = new LinkedList<Usuario>();    //ok
-    private LinkedList<Tarefa> tarefas = new LinkedList<Tarefa>();                  //ok
+    private String descricao;
+    private LocalDate dhInicioAtv;
+    private LocalDate dhFimAtv;
+    private Usuario responsavel;
+    private LinkedList<Usuario> profissionaisEnvolv = new LinkedList<Usuario>();
+    private LinkedList<Tarefa> tarefas = new LinkedList<Tarefa>();
     private LinkedList<Usuario> requisitantes = new LinkedList<Usuario>();
 
     public void relatorio(){

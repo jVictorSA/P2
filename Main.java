@@ -7,7 +7,7 @@ public class Main{
         
     }
     public static void main(String[] args){
-        Sistema sistema = new Sistema();
+        Sistema sistema = Sistema.getSistema();
         boolean login = true;
         boolean menu = true;
         Scanner input = new Scanner(System.in);
@@ -40,23 +40,21 @@ public class Main{
         do{
             try {
                 System.out.println("---------------MENU---------------");
-                System.out.println("Digite 01 para adicionar usuario no sistema");
-                System.out.println("Digite 02 para remover usuario do sistema");
-                System.out.println("Digite 03 para adicionar projeto no sistema");
-                System.out.println("Digite 04 para remover projeto do sistema");
-                System.out.println("Digite 05 para adicionar atividade em projeto");
-                 
-                System.out.println("Digite 06 para adicionar usuario em projeto");
-                System.out.println("Digite 07 para adicionar data de inicio em projeto");
-                System.out.println("Digite 08 para adicionar data de fim em projeto");
-                System.out.println("Digite 09 para adicionar profissional em projeto");
+                System.out.println("Digite  1 para adicionar usuario no sistema");
+                System.out.println("Digite  2 para remover usuario do sistema");
+                System.out.println("Digite  3 para adicionar projeto no sistema");
+                System.out.println("Digite  4 para remover projeto do sistema");
+                System.out.println("Digite  5 para adicionar atividade em projeto");
+                System.out.println("Digite  6 para adicionar usuario em projeto");
+                System.out.println("Digite  7 para adicionar data de inicio em projeto");
+                System.out.println("Digite  8 para adicionar data de fim em projeto");
+                System.out.println("Digite  9 para adicionar profissional em projeto");
                 System.out.println("Digite 10 para adicionar bolsa em projeto");
                 System.out.println("Digite 11 para adicionar requisitante em projeto");
                 System.out.println("Digite 12 para adicionar requisitante em atividade");
                 System.out.println("Digite 13 para remover usuario de um projeto");
                 System.out.println("Digite 14 para remover profissional de um projeto");
                 System.out.println("Digite 15 para remover atividade de um projeto");
-
                 System.out.println("Digite 16 para remover atividade de projeto");
                 System.out.println("Digite 17 para alterar usuario em projeto");
                 System.out.println("Digite 18 para editar descricao de projeto");

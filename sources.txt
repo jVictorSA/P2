@@ -1,0 +1,16 @@
+./Projeto.java
+./Privilegios.java
+./Pesquisador.java
+./Professor.java
+./Tipo.java
+./Bolsa.java
+./Tarefa.java
+./Profissional.java
+./Main.java
+./Atividade.java
+./Status.java
+./Aluno.java
+./Usuario.java
+./Tecnico.java
+./Sistema.java
+./Builder.java

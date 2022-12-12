@@ -35,7 +35,7 @@ public class Bolsa{
 		return valorBolsa;
 	}
 
-	public Usuario getRecebedor(){
+	public Aluno getRecebedor(){
 		return recebedor;
 	}
 //  ------------------------------------Getters--------------------------------------}

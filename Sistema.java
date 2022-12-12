@@ -79,7 +79,12 @@ public void relatorio(){
             return;
         }
 
-        Projeto projeto = new Projeto(descricao, usuario);
+        Builder builder = new Builder();
+
+        builder.setCoordenador(usuario);
+        builder.setDescricao(descricao);
+
+        Projeto projeto = builder.build();
         this.projetos.add(projeto);
     }
 

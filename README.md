@@ -1,5 +1,16 @@
 # P2
-Executar o código presente em Main.java
+
+## Compilação
+No seu terminal, execute:
+```
+javac @sources.txt
+```
+
+## Execução
+NO seu terminal, execute o código presente em Main.class a partir do comando:
+```
+java Main
+```
 
 ## Smells detectados previamente
 * Long Method
@@ -13,5 +24,8 @@ Executar o código presente em Main.java
 * Dead Code
 * Comments
 
-## Design Pattern implementado
+## Design Pattern implementados
 * Singleton
+* Observer
+* Builder
+* Factory

@@ -157,6 +157,14 @@ public class Projeto{
     public void removeAtividade(Atividade atividade) {
     	this.atividades.remove(atividade);
     }
+
+    public void removeBolsa(Bolsa bolsa){
+        this.valoresBolsas.remove(bolsa);
+    }
+
+    public void removeRequisitante(Usuario requisitante){
+        this.requisitantes.remove(requisitante);
+    }
 //  -------------------------------------Remoções------------------------------------}
 
 //  {------------------------------------Edições--------------------------------------
